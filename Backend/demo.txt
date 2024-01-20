@@ -1,0 +1,9 @@
+{
+    "name":  "omkar";
+    "email":     "yy";
+    "phone":     12234;
+    "gender":    "ff";
+    "chbk1":     "others";
+    "city":  "hh";
+    "state":     "jj";
+  }
