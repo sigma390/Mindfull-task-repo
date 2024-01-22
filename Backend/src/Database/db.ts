@@ -6,6 +6,7 @@ import mongoose, { ConnectOptions, Mongoose, Schema, Types } from "mongoose";
 // Define the User interface
 type SocialEntity = "LinkedInProfile" | "Friend" | "JobPosting" | "others";
 interface User {
+    _id:string
     name: string;
     password:string;
     email: string;
@@ -21,7 +22,7 @@ const userSchema = new Schema<User>(
     {
       name: { type: String, required: true },
       email: { type: String, required: true },
-      password: { type: String, required: true },
+      password: { type: String },
       phone: { type: String, required: true },
       gender: { type: String, required: true },
       chbk1: { type: String, enum: ["LinkedInProfile", "Friend", "JobPosting", "others"], required: true },

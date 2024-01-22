@@ -128,9 +128,120 @@ router.get('/users/dashboard', async (req: Request, res: Response) => {
     res.json({ users });
     
   });
+  // Middleware to ensure authentication
+router.use(Authentication);
+
+
+
+// ==============> Route for updating user details <=============
+router.put('/users/:userId', async (req: Request, res: Response) => {
+    // Extract user ID from the request parameters
+    const userId = req.params.userId;
+
+    // Check if the user ID is valid (you may want to add additional validation)
+    if (!userId) {
+      return res.status(400).json({ message: 'Invalid user ID' });
+    }
+
+    // Extract updated details from the request body
+    const { name, email, phone, gender, chbk1, city, state } = req.body;
+
+    // Find the user by ID
+    const user = await UserModel.findById(userId);
+
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update user details
+    user.name = name || user.name;
+    user.email = email || user.email;
+    user.phone = phone || user.phone;
+    user.gender = gender || user.gender;
+    user.chbk1 = chbk1 || user.chbk1;
+    user.city = city || user.city;
+    user.state = state || user.state;
+
+    // Save the updated user
+    await user.save();
+
+    // Send the updated user in the response
+    res.json({ user });
+  
+});
+
+
+
+//by Id
+
+router.get('/users/:userId',Authentication, async (req, res) => {
+  try {
+    // Extract user ID from the request parameters
+    const userId = req.params.userId;
+
+    // Check if the user ID is valid (you may want to add additional validation)
+    if (!userId) {
+      return res.status(400).json({ message: 'Invalid user ID' });
+    }
+
+    // Find the user by ID
+    const user = await UserModel.findById(userId);
+
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Send the user information in the response
+    res.json({ user });
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
+
   
 
+router.put('/users/:userId', async (req: Request, res: Response) => {
+  // Extract user ID from the request parameters
+  const userId = req.params.userId;
 
+  // Check if the user ID is valid (you may want to add additional validation)
+  if (!userId) {
+    return res.status(400).json({ message: 'Invalid user ID' });
+  }
+
+  // Extract updated details from the request body
+  const { name, email, phone, gender, chbk1, city, state } = req.body;
+
+  // Find the user by ID
+  const user = await UserModel.findById(userId);
+
+  // Check if the user exists
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Update user details
+  user.name = name || user.name;
+  user.email = email || user.email;
+  user.password = user.password;
+  user.phone = phone || user.phone;
+  user.gender = gender || user.gender;
+  user.chbk1 = chbk1 || user.chbk1;
+  user.city = city || user.city;
+  user.state = state || user.state;
+
+  // Save the updated user
+  await user.save();
+
+  // Send the updated user in the response
+  res.json({ user });
+
+});
 
 
 
