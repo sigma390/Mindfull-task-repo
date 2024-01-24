@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import { BASE_URL } from "../config.js";
 import axios from "axios";
 
+
 interface User {
   _id: string; // MongoDB user ID
   name: string;
@@ -61,27 +62,36 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
   };
 
   return (
-    <Card
-      style={{
-        margin: 10,
-        width: 300,
-        minHeight: 200,
-        padding: 20,
-        cursor: 'pointer',
-      }}
-      onClick={cardClickHandler}
-    >
-      <Typography textAlign={'center'} variant="h5">
-        {user.name}
-      </Typography>
-      <Typography textAlign={'center'} variant="subtitle1">
-        {user.email}
-      </Typography>
-      <img src="" alt={user.name} style={{ width: 300 }} />
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
-        {/* Additional user information or actions */}
-      </div>
-    </Card>
+        <div style={{display:'flex', flex:'wrap', marginTop:50}}>
+
+
+
+
+<Card
+  style={{
+    margin: 10,
+    width: 300,
+    minHeight: 200,
+    padding: 20,
+    cursor: 'pointer',
+  }}
+  onClick={cardClickHandler}
+>
+  <Typography textAlign={'center'} variant="h5">
+    {user.name}
+  </Typography>
+  <Typography textAlign={'center'} variant="subtitle1">
+    {user.email}
+  </Typography>
+  <img src="" alt={user.name} style={{ width: 300 }} />
+  <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
+    {/* Additional user information or actions */}
+  </div>
+</Card>
+
+</div>
+  
+  
   );
 };
 

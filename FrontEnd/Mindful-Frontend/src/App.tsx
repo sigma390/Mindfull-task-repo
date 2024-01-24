@@ -5,11 +5,13 @@ import Register from './Components/Register';
 import Users from './Components/Users';
 import UserDetails from './Components/UserDetails';
 import  Landing  from './Components/Landing';
+import SearchAppBar from './Components/SearchAppBar';
 function App() {
 
 
   return (
     <Router>
+      <SearchAppBar/>
         <Routes>
           <Route path={"/signin"} element={<Signup />} />
           <Route path={"/users"} element={<Users />} />

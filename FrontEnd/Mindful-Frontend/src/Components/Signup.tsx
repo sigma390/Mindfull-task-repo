@@ -43,6 +43,8 @@ function Signup() {
                     label="Password"
                     variant="outlined"
                     type={"password"}
+
+                    
                 />
                 <br/><br/>
 

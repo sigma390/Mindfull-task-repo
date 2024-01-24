@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { Button, Card, TextField } from "@mui/material";
+import { Button, Card, TextField, Typography } from "@mui/material";
 import { BASE_URL } from "../config.js";
+
+
 
 interface User {
   _id: string;
@@ -68,47 +70,57 @@ const UserDetails: React.FC = () => {
   }
 
   return (
-    <div>
-      <h2>User Details</h2>
-      <Card style={{ margin: 10, width: 300, minHeight: 200, padding: 20 }}>
+    <div style={{display:'flex', justifyContent:'center', flex:'wrap',}}>
+     
+      <Card style={{ margin: 10, width: 300, minHeight: 600, padding: 20, marginTop:40 }}>
+        <Typography fontSize={20} style={{font:'bold'}}>User Details</Typography>
         <TextField
           label="Name"
           value={editedUser?.name || ''}
-          onChange={(e) => handleInputChange('name', e.target.value)}
+          style={{marginTop:20}}
+          
+          onChange={(e) => handleInputChange('name', e.target.value)
+        }
         />
         <TextField
           label="Email"
+          style={{marginTop:20}}
           value={editedUser?.email || ''}
           onChange={(e) => handleInputChange('email', e.target.value)}
         />
         <TextField
           label="Phone"
+          style={{marginTop:20}}
           value={editedUser?.phone || ''}
           onChange={(e) => handleInputChange('phone', e.target.value)}
         />
         <TextField
           label="Gender"
+          style={{marginTop:20}}
           value={editedUser?.gender || ''}
           onChange={(e) => handleInputChange('gender', e.target.value)}
         />
         <TextField
           label="Social Entity"
+          style={{marginTop:20}}
           value={editedUser?.chbk1 || ''}
           onChange={(e) => handleInputChange('chbk1', e.target.value)}
         />
         <TextField
           label="City"
+          style={{marginTop:20}}
           value={editedUser?.city || ''}
           onChange={(e) => handleInputChange('city', e.target.value)}
         />
         <TextField
           label="State"
+          style={{marginTop:20}}
           value={editedUser?.state || ''}
           onChange={(e) => handleInputChange('state', e.target.value)}
         />
 
-        <Button onClick={handleUpdateClick}>Update Details</Button>
-        <Button>Delete User</Button>
+        <Button style={{backgroundColor:'green', color:'white', marginTop:5 ,marginRight:5 }} onClick={handleUpdateClick}>Update User</Button>
+        <Button style={{backgroundColor:'red', color:'white', marginTop:5}}>Delete User</Button>
       </Card>
     </div>
   );
