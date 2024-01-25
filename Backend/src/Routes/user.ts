@@ -244,5 +244,36 @@ router.put('/users/:userId', async (req: Request, res: Response) => {
 });
 
 
+  //delete user 
+  router.delete('/users/:userId', Authentication, async (req, res) => {
+    try {
+      // Extract user ID from the request parameters
+      const userId = req.params.userId;
+  
+      // Check if the user ID is valid (you may want to add additional validation)
+      if (!userId) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+      }
+  
+      // Find the user by ID
+      const user = await UserModel.findById(userId);
+  
+      // Check if the user exists
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Delete the user
+      await UserModel.findByIdAndDelete(userId);
+  
+      // Send a success message in the response
+      res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  });
+  
+
 
 module.exports =  router;

@@ -189,4 +189,29 @@ router.put('/users/:userId', (req, res) => __awaiter(void 0, void 0, void 0, fun
     // Send the updated user in the response
     res.json({ user });
 }));
+//delete user 
+router.delete('/users/:userId', auth_1.Authentication, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // Extract user ID from the request parameters
+        const userId = req.params.userId;
+        // Check if the user ID is valid (you may want to add additional validation)
+        if (!userId) {
+            return res.status(400).json({ message: 'Invalid user ID' });
+        }
+        // Find the user by ID
+        const user = yield db_1.default.findById(userId);
+        // Check if the user exists
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        // Delete the user
+        yield db_1.default.findByIdAndDelete(userId);
+        // Send a success message in the response
+        res.json({ message: 'User deleted successfully' });
+    }
+    catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}));
 module.exports = router;
