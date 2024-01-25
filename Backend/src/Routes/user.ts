@@ -144,7 +144,7 @@ router.put('/users/:userId', async (req: Request, res: Response) => {
     }
 
     // Extract updated details from the request body
-    const { name, email, phone, gender, chbk1, city, state } = req.body;
+    const { name, email, phone, gender, chbk1, city, state, imageUrl } = req.body;
 
     // Find the user by ID
     const user = await UserModel.findById(userId);
@@ -162,6 +162,7 @@ router.put('/users/:userId', async (req: Request, res: Response) => {
     user.chbk1 = chbk1 || user.chbk1;
     user.city = city || user.city;
     user.state = state || user.state;
+    user.imageUrl = imageUrl || user.imageUrl;
 
     // Save the updated user
     await user.save();
@@ -215,7 +216,7 @@ router.put('/users/:userId', async (req: Request, res: Response) => {
   }
 
   // Extract updated details from the request body
-  const { name, email, phone, gender, chbk1, city, state } = req.body;
+  const { name, email, phone, gender, chbk1, city, state, imageUrl } = req.body;
 
   // Find the user by ID
   const user = await UserModel.findById(userId);
@@ -234,6 +235,7 @@ router.put('/users/:userId', async (req: Request, res: Response) => {
   user.chbk1 = chbk1 || user.chbk1;
   user.city = city || user.city;
   user.state = state || user.state;
+  user.imageUrl = imageUrl || user.imageUrl;
 
   // Save the updated user
   await user.save();

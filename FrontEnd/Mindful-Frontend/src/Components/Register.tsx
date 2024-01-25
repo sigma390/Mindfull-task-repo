@@ -27,6 +27,7 @@ interface User {
   chbk1: SocialEntity;
   city: string;
   state: string;
+  imageUrl:string;
 }
 
 const Register: React.FC = () => {
@@ -40,6 +41,7 @@ const Register: React.FC = () => {
     chbk1: 'LinkedInProfile', // You can set a default value or leave it empty
     city: '',
     state: '',
+    imageUrl:''
   });
 
   const handleChange = (
@@ -74,6 +76,7 @@ const Register: React.FC = () => {
         chbk1: 'others',
         city: '',
         state: '',
+        imageUrl:''
       })
       const data = response.data;
       localStorage.setItem('token', data.token);
@@ -168,6 +171,14 @@ const Register: React.FC = () => {
             fullWidth
             value={formData.state}
             onChange={handleChange('state')}
+            style={{ marginBottom: '16px' }}
+          />
+          <TextField
+            label="image"
+            variant="outlined"
+            fullWidth
+            value={formData.imageUrl}
+            onChange={handleChange('imageUrl')}
             style={{ marginBottom: '16px' }}
           />
           <Button

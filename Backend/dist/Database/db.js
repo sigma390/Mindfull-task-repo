@@ -33,6 +33,7 @@ const userSchema = new mongoose_1.Schema({
     chbk1: { type: String, enum: ["LinkedInProfile", "Friend", "JobPosting", "others"], required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
+    imageUrl: { type: String },
     lastModified: { type: Date, default: Date.now }, // Track modification time
 }, { timestamps: true } // Optional: Adds createdAt and updatedAt fields
 );

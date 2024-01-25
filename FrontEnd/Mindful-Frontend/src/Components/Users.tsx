@@ -15,6 +15,7 @@ interface User {
   chbk1: SocialEntity;
   city: string;
   state: string;
+  imageUrl:string;
   lastModified: Date;
 }
 
@@ -83,7 +84,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
   <Typography textAlign={'center'} variant="subtitle1">
     {user.email}
   </Typography>
-  <img src="" alt={user.name} style={{ width: 300 }} />
+  <img src={user.imageUrl} alt={user.name} style={{ width: 300 }} />
   <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
     {/* Additional user information or actions */}
   </div>

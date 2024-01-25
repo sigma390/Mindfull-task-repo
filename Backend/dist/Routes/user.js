@@ -117,7 +117,7 @@ router.put('/users/:userId', (req, res) => __awaiter(void 0, void 0, void 0, fun
         return res.status(400).json({ message: 'Invalid user ID' });
     }
     // Extract updated details from the request body
-    const { name, email, phone, gender, chbk1, city, state } = req.body;
+    const { name, email, phone, gender, chbk1, city, state, imageUrl } = req.body;
     // Find the user by ID
     const user = yield db_1.default.findById(userId);
     // Check if the user exists
@@ -132,6 +132,7 @@ router.put('/users/:userId', (req, res) => __awaiter(void 0, void 0, void 0, fun
     user.chbk1 = chbk1 || user.chbk1;
     user.city = city || user.city;
     user.state = state || user.state;
+    user.imageUrl = imageUrl || user.imageUrl;
     // Save the updated user
     yield user.save();
     // Send the updated user in the response
@@ -168,7 +169,7 @@ router.put('/users/:userId', (req, res) => __awaiter(void 0, void 0, void 0, fun
         return res.status(400).json({ message: 'Invalid user ID' });
     }
     // Extract updated details from the request body
-    const { name, email, phone, gender, chbk1, city, state } = req.body;
+    const { name, email, phone, gender, chbk1, city, state, imageUrl } = req.body;
     // Find the user by ID
     const user = yield db_1.default.findById(userId);
     // Check if the user exists
@@ -184,6 +185,7 @@ router.put('/users/:userId', (req, res) => __awaiter(void 0, void 0, void 0, fun
     user.chbk1 = chbk1 || user.chbk1;
     user.city = city || user.city;
     user.state = state || user.state;
+    user.imageUrl = imageUrl || user.imageUrl;
     // Save the updated user
     yield user.save();
     // Send the updated user in the response

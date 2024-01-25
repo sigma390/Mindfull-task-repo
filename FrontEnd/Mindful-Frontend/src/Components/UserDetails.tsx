@@ -16,6 +16,7 @@ interface User {
   chbk1: SocialEntity;
   city: string;
   state: string;
+  imageUrl:string
   lastModified: Date;
 }
 
@@ -132,6 +133,12 @@ const UserDetails: React.FC = () => {
           style={{marginTop:20}}
           value={editedUser?.state || ''}
           onChange={(e) => handleInputChange('state', e.target.value)}
+        />
+        <TextField
+          label="ImageLink"
+          style={{marginTop:20}}
+          value={editedUser?.imageUrl || ''}
+          onChange={(e) => handleInputChange('imageUrl', e.target.value)}
         />
 
         <Button style={{backgroundColor:'green', color:'white', marginTop:5 ,marginRight:5 }} onClick={handleUpdateClick}>Update User</Button>

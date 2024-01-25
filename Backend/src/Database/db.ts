@@ -15,6 +15,7 @@ interface User {
     chbk1: SocialEntity;
     city: string;
     state: string;
+    imageUrl:string;
     lastModified: Date;
   }
 
@@ -28,6 +29,7 @@ const userSchema = new Schema<User>(
       chbk1: { type: String, enum: ["LinkedInProfile", "Friend", "JobPosting", "others"], required: true },
       city: { type: String, required: true },
       state: { type: String, required: true },
+      imageUrl: {type:String},
       lastModified: { type: Date, default: Date.now }, // Track modification time
     },
     { timestamps: true } // Optional: Adds createdAt and updatedAt fields
