@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Card, TextField, Typography } from "@mui/material";
 import { BASE_URL } from "../config.js";
 
@@ -22,6 +22,7 @@ interface User {
 type SocialEntity = 'LinkedInProfile' | 'Friend' | 'JobPosting' | 'others';
 
 const UserDetails: React.FC = () => {
+  const navigate = useNavigate();
   const { userId } = useParams<{ userId: string }>();
   const [user, setUser] = useState<User | null>(null);
   const [editedUser, setEditedUser] = useState<User | null>(null);
@@ -52,6 +53,7 @@ const UserDetails: React.FC = () => {
   };
 
   const handleUpdateClick = async () => {
+    
     try {
       await axios.put(`${BASE_URL}/user/users/${userId}`, editedUser, {
         headers: {
@@ -64,7 +66,20 @@ const UserDetails: React.FC = () => {
       console.error('Error updating user details:', error);
     }
   };
-
+  const handleDeleteClick = async () => {
+    try {
+      await axios.delete(`${BASE_URL}/user/users/${userId}`, {
+        headers: {
+          auth: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      alert('User deleted successfully');
+      navigate('/users');
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      alert('Failed to delete user');
+    }
+  };
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -120,7 +135,7 @@ const UserDetails: React.FC = () => {
         />
 
         <Button style={{backgroundColor:'green', color:'white', marginTop:5 ,marginRight:5 }} onClick={handleUpdateClick}>Update User</Button>
-        <Button style={{backgroundColor:'red', color:'white', marginTop:5}}>Delete User</Button>
+        <Button style={{backgroundColor:'red', color:'white', marginTop:5}} onClick={handleDeleteClick}>Delete User</Button>
       </Card>
     </div>
   );
